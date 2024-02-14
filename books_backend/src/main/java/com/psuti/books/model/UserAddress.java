@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 public class UserAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdUserList", nullable = false)
     private Long id;
 
     @ManyToOne

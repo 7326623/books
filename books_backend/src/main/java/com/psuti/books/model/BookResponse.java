@@ -16,14 +16,13 @@ import java.util.Date;
 public class BookResponse {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdBookResponse", nullable = false)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "idBookLiterary", nullable = false)
     private BookLiterary bookLiterary;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "idUser", nullable = false)
     private User user;
 

@@ -6,27 +6,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="IdCategory", nullable = false)
     private Long id;
 
     @Column(nullable = false, length = 25)
-    private String Name;
+    private String name;
 
-    //@ManyToOne
-    //@Column(nullable = false)
-    //private Category IdParent;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Category idParent;
 
     @Column(nullable = false)
-    private Boolean MultiSelect;
+    private boolean multiSelect = false;
 }

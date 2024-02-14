@@ -6,40 +6,35 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.Date;
 
+@Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserMsg {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdUserMsg", nullable = false)
     private Long id;
 
     @ManyToOne
     @JoinColumn (name = "IdUser", nullable = false)
-    private User User;
+    private User user;
 
     @Column(nullable = false)
-    private Date CreateAt;
+    private Date createAt;
 
     @Column(nullable = false, length = 250)
-    private String Text;
+    private String text;
 
     @Column(length = 150)
-    private String Notes;
+    private String notes;
 
     @ManyToOne
     @JoinColumn(name = "IdStatus", nullable = false)
-    private Status Status;
+    private Status status;
 
     @Column (nullable = false)
-    private Long Type;
-
-
-
+    private int type;
 }

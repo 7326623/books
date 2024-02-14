@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class BookLiterary {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdBookLiterary", nullable = false)
+    @Column(nullable = false)
     private Long id;
 
     @ManyToOne
