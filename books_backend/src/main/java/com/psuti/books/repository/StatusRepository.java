@@ -1,4 +1,9 @@
 package com.psuti.books.repository;
 
-public interface StatusRepository {
+import com.psuti.books.model.Status;
+import jakarta.persistence.Entity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+@Entity
+public interface StatusRepository extends JpaRepository<Status, Long> {
 }

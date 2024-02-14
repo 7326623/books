@@ -1,4 +1,9 @@
 package com.psuti.books.repository;
 
-public interface ExchangeListRepository {
+import com.psuti.books.model.ExchangeList;
+import jakarta.persistence.Entity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+@Entity
+public interface ExchangeListRepository extends JpaRepository<ExchangeList, Long> {
 }
