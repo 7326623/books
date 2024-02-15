@@ -6,22 +6,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
+@Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdUserList", nullable = false)
     private Long id;
 
-    @Column (nullable = false)
-    private Long TypeList;
+    @Column(nullable = false)
+    private int typeList;
 
-    @ManyToOne
-    @JoinColumn(name = "IdList", nullable = false)
-    private OfferList OfferList;
-
-    @ManyToOne
-    @JoinColumn(name = "IdList", nullable = false)
-    private WishList WishList;
+//    @ManyToOne
+//    @JoinColumn(name = "IdList", nullable = false)
+//    private OfferList offerList;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "IdList", nullable = false)
+//    private WishList wishList;
 }

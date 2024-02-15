@@ -6,27 +6,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
+@Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserExchangeList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdUserExchangeList", nullable = false)
     private Long id;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn (name = "IdExchangeList", nullable = false)
-    private ExchangeList ExchangeList;
+    private ExchangeList exchangeList;
 
     @OneToOne
     @JoinColumn (name = "IdOfferList", nullable = false)
-    private OfferList Offerlist;
+    private OfferList offerlist;
 
     @Column (length = 14)
-    private String TrackNumber;
+    private String trackNumber;
 
     @Column (nullable = false)
-    private Boolean Receiving;
-
-
+    private boolean receiving = false;
 }

@@ -16,7 +16,6 @@ import java.util.Date;
 public class WishList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdWishList", nullable = false)
     private Long id;
 
     @ManyToOne

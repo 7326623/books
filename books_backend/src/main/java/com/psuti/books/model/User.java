@@ -17,7 +17,6 @@ import java.util.Date;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "idUser", nullable = false)
     private Long id;
 
     @Column(nullable = false, length = 25)

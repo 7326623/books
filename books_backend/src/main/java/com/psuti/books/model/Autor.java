@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdAutor", nullable = false)
     private Long id;
 
     @Column(nullable = false, length = 20)

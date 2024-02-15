@@ -8,36 +8,36 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-import java.util.Date;
-
+@Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ExchangeList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdExchangeList", nullable = false)
     private Long id;
 
     @OneToOne
     @JoinColumn(name = "IdOfferList1", nullable = false)
-    private OfferList OfferList1;
+    private OfferList offerList1;
 
     @OneToOne
     @JoinColumn(name = "IdWishList1", nullable = false)
-    private WishList WishList1;
+    private WishList wishList1;
 
     @OneToOne
     @JoinColumn(name = "IdOfferList2", nullable = false)
-    private OfferList OfferList2;
+    private OfferList offerList2;
 
     @OneToOne
     @JoinColumn(name = "IdWishList2", nullable = false)
-    private WishList WishList2;
+    private WishList wishList2;
 
     @Column(nullable = false)
-    private Date CreateAt;
+    private Date createAt;
 
     @Column(nullable = false)
-    private boolean IsBoth;
-
-
+    private boolean isBoth = false;
 }
 

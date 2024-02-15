@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,12 +17,11 @@ import java.util.Date;
 public class OfferList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdOfferList", nullable = false)
     private Long id;
 
     @OneToMany
     @JoinColumn(name = "IdBookLiterary", nullable = false)
-    private BookLiterary bookLiterary;
+    private List<BookLiterary> bookLiterary;
 
     @ManyToOne
     @JoinColumn(name = "IdUser", nullable = false)

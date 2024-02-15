@@ -6,21 +6,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
+@Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserValueCategory {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "IdUserValueCategory", nullable = false)
     private Long id;
 
     @ManyToOne
     @JoinColumn (name = "IdUserList", nullable = false)
-    private UserList UserList;
+    private UserList userList;
 
     @OneToOne
     @JoinColumn (name = "IdCategory", nullable = false)
-    private Category Category;
-
+    private Category category;
 }
