@@ -13,7 +13,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WishList {
+public class WishList extends UserList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;

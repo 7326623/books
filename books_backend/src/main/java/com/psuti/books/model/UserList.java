@@ -1,29 +1,34 @@
 package com.psuti.books.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.util.Date;
+import java.util.List;
 
 @Entity
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserList {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class UserList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(nullable = false)
-    private int typeList;
+    @ManyToOne
+    @JoinColumn(name = "IdUser", nullable = false)
+    private User user;
 
-//    @ManyToOne
-//    @JoinColumn(name = "IdList", nullable = false)
-//    private OfferList offerList;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "IdList", nullable = false)
-//    private WishList wishList;
+    @Column(nullable = false)
+    private Date createAt;
+
+    @Column(nullable = false)
+    private Date updateAt;
+
+    @ManyToOne
+    @JoinColumn(name = "IdStatus", nullable = false)
+    private Status status;
+
+    @ManyToMany
+    @JoinTable(name="category_list",
+            joinColumns=  @JoinColumn(name="list_id", referencedColumnName="id"),
+            inverseJoinColumns= @JoinColumn(name="category_id", referencedColumnName="id") )
+    private List<Category> categories;
 }

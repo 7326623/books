@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OfferList {
+public class OfferList extends UserList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
