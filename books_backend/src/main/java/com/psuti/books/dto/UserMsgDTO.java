@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class UserMsgDTO {
+    private Long id;
     private User user;
     private String text;
     private String notes;

@@ -6,9 +6,9 @@ import lombok.Data;
 
 @Data
 public class UserExchangeListDTO {
+    private Long id;
     private ExchangeList exchangeList;
     private OfferList offerList;
     private String trackNumber;
     private boolean receiving;
-
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Data
 public class UserListDTO {
+    private Long id;
     private User user;
     private Status status;
     private List<Category> categories;

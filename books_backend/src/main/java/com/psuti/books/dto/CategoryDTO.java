@@ -8,8 +8,9 @@ import java.util.List;
 
 @Data
 public class CategoryDTO {
+    private Long id;
     private String name;
     private Category idParent;
-    private boolean multiselect;
+    private boolean multiSelect;
     private List<UserList> list;
 }

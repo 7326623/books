@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Data
 public class WishListDTO {
+    private Long id;
     private User user;
     private Status status;
     private UserAddress userAddress;

@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Data
 public class OfferListDTO {
+    private Long id;
     private BookLiterary bookLiterary;
     private User user;
     private String isbn;

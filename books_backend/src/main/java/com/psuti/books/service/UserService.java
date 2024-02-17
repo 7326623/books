@@ -30,7 +30,19 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User update(User user) {
+    public User updateFromUser(UserDTO dto) {
+        return userRepository.save(User.builder()
+                .firstName(dto.getFirstName())
+                .lastName(dto.getLastName())
+                .secondName(dto.getSecondName())
+                .email(dto.getEmail())
+                .userName(dto.getUserName())
+                .password(dto.getPassword())
+                .avatar(dto.getAvatar())
+                .build());
+    }
+
+    public User updateFromAdmin(User user) {
         return userRepository.save(user);
     }
 

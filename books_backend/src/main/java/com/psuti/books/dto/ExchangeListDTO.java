@@ -6,9 +6,10 @@ import lombok.Data;
 
 @Data
 public class ExchangeListDTO {
+    private Long id;
     private OfferList offerList1;
     private OfferList offerList2;
     private WishList wishList1;
     private WishList wishList2;
-    private Boolean isBoth;
+    private boolean isBoth;
 }
