@@ -42,6 +42,7 @@ public class UserService {
     public User updateFromUser(UserDTO dto) {
         var bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return userRepository.save(User.builder()
+                        .id(dto.getId())
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
                 .secondName(dto.getSecondName())

@@ -28,9 +28,10 @@ public class BookResponseService {
 
     public BookResponse updateFromUser(BookResponseDTO dto) {
         return bookResponseRepository.save(BookResponse.builder()
+                        .id(dto.getId())
                 .bookLiterary(dto.getBookLiterary())
                 .user(dto.getUser())
-                .createAt(new Date())
+
                 .response(dto.getResponse())
                 .note(dto.getNote())
 

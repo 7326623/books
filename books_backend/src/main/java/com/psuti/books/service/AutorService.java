@@ -21,6 +21,7 @@ public class AutorService {
 
     public Autor updateFromUser(AutorDTO dto) {
         return autorRepository.save(Autor.builder()
+                        .id(dto.getId())
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
                 .build());

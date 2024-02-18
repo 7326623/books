@@ -23,6 +23,7 @@ public class BookLiteraryService {
 
     public BookLiterary updateFromUser(BookLiteraryDTO dto) {
         return bookLiteraryRepository.save(BookLiterary.builder()
+                        .id(dto.getId())
                 .autor(dto.getAutor())
                 .bookName(dto.getBookName())
                 .note(dto.getNote())
