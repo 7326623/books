@@ -1,5 +1,6 @@
 package com.psuti.books.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,13 +29,14 @@ public class User {
     @Column(length = 25)
     private String secondName;
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false, length = 15, unique = true)
     private String email;
 
     @Column(nullable = false, length = 20)
     private String userName;
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(nullable = false)
@@ -50,8 +52,11 @@ public class User {
     private byte[] avatar;
 
     @Column(nullable = false)
-    private boolean isStaff = false;
+    private String role;
 
-    @Column(nullable = false)
-    private boolean isSuperAdmin = false;
+//    @Column(nullable = false)
+//    private boolean isStaff = false;
+//
+//    @Column(nullable = false)
+//    private boolean isSuperAdmin = false;
 }
