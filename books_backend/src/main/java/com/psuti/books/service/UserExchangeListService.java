@@ -1,13 +1,10 @@
 package com.psuti.books.service;
 
-import com.psuti.books.dto.UserAddressDTO;
 import com.psuti.books.dto.UserExchangeListDTO;
-import com.psuti.books.model.UserAddress;
 import com.psuti.books.model.UserExchangeList;
-import com.psuti.books.repository.UserAddressRepository;
 import com.psuti.books.repository.UserExchangeListRepository;
 
-public class UserExLService {
+public class UserExchangeListService {
     private UserExchangeListRepository userExchangeListRepository;
     public UserExchangeList create(UserExchangeListDTO dto) {
         return userExchangeListRepository.save(UserExchangeList.builder()

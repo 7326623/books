@@ -1,13 +1,10 @@
 package com.psuti.books.service;
 
-import com.psuti.books.dto.StatusDTO;
 import com.psuti.books.dto.UserAddressDTO;
-import com.psuti.books.model.Status;
 import com.psuti.books.model.UserAddress;
-import com.psuti.books.repository.StatusRepository;
 import com.psuti.books.repository.UserAddressRepository;
 
-public class UserAddrService {
+public class UserAddressService {
     private UserAddressRepository userAddressRepository;
     public UserAddress create(UserAddressDTO dto) {
         return userAddressRepository.save(UserAddress.builder()

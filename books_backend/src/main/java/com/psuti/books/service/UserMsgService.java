@@ -1,15 +1,12 @@
 package com.psuti.books.service;
 
-import com.psuti.books.dto.UserExchangeListDTO;
 import com.psuti.books.dto.UserMsgDTO;
-import com.psuti.books.model.UserExchangeList;
 import com.psuti.books.model.UserMsg;
-import com.psuti.books.repository.UserExchangeListRepository;
 import com.psuti.books.repository.UserMsgRepository;
 
 import java.util.Date;
 
-public class UserMService {
+public class UserMsgService {
     private UserMsgRepository userMsgRepository;
         public UserMsg create(UserMsgDTO dto) {
             return userMsgRepository.save(UserMsg.builder()

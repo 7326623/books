@@ -1,15 +1,12 @@
 package com.psuti.books.service;
 
-import com.psuti.books.dto.UserMsgDTO;
 import com.psuti.books.dto.WishListDTO;
-import com.psuti.books.model.UserMsg;
 import com.psuti.books.model.WishList;
-import com.psuti.books.repository.UserMsgRepository;
 import com.psuti.books.repository.WishListRepository;
 
 import java.util.Date;
 
-public class WishService {
+public class WishListService {
     private WishListRepository wishListRepository;
     public WishList create(WishListDTO dto) {
         return wishListRepository.save(WishList.builder()
