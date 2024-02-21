@@ -3,7 +3,11 @@ package com.psuti.books.service;
 import com.psuti.books.dto.UserAddressDTO;
 import com.psuti.books.model.UserAddress;
 import com.psuti.books.repository.UserAddressRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
 public class UserAddressService {
     private UserAddressRepository userAddressRepository;
     public UserAddress create(UserAddressDTO dto) {

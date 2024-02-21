@@ -5,7 +5,11 @@ import com.psuti.books.dto.AutorDTO;
 import com.psuti.books.model.Autor;
 
 import com.psuti.books.repository.AutorRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
 public class AutorService {
     private AutorRepository autorRepository;
     public Autor create(AutorDTO dto) {

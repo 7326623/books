@@ -1,10 +1,6 @@
 package com.psuti.books.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Lob;
 import lombok.Data;
-
-import java.util.Date;
 
 @Data
 public class UserDTO {

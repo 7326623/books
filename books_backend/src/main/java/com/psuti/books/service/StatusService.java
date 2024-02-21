@@ -1,15 +1,13 @@
 package com.psuti.books.service;
 
-import com.psuti.books.dto.OfferListDTO;
 import com.psuti.books.dto.StatusDTO;
-import com.psuti.books.model.BookLiterary;
-import com.psuti.books.model.OfferList;
 import com.psuti.books.model.Status;
-import com.psuti.books.repository.OfferListRepository;
 import com.psuti.books.repository.StatusRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+@Service
+@RequiredArgsConstructor
 public class StatusService {
     private StatusRepository statusRepository;
     public Status create(StatusDTO dto) {

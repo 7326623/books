@@ -33,10 +33,9 @@ public class WebSecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .securityMatcher("/**")
                 .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("/user/new").permitAll()
-                        .requestMatchers("/user/guest").permitAll()
                         .requestMatchers("/auth/login").permitAll()
-                        .requestMatchers("/user/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/auth/registration").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 );
 

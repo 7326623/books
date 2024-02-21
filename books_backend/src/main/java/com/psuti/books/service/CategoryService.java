@@ -1,14 +1,13 @@
 package com.psuti.books.service;
 
-import com.psuti.books.dto.BookResponseDTO;
 import com.psuti.books.dto.CategoryDTO;
-import com.psuti.books.model.BookResponse;
 import com.psuti.books.model.Category;
-import com.psuti.books.repository.BookResponseRepository;
 import com.psuti.books.repository.CategoryRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
+@Service
+@RequiredArgsConstructor
 public class CategoryService {
 
     private CategoryRepository categoryRepository;

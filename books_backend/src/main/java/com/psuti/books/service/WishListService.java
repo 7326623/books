@@ -3,9 +3,13 @@ package com.psuti.books.service;
 import com.psuti.books.dto.WishListDTO;
 import com.psuti.books.model.WishList;
 import com.psuti.books.repository.WishListRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Service
+@RequiredArgsConstructor
 public class WishListService {
     private WishListRepository wishListRepository;
     public WishList create(WishListDTO dto) {

@@ -3,9 +3,13 @@ package com.psuti.books.service;
 import com.psuti.books.dto.UserMsgDTO;
 import com.psuti.books.model.UserMsg;
 import com.psuti.books.repository.UserMsgRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Service
+@RequiredArgsConstructor
 public class UserMsgService {
     private UserMsgRepository userMsgRepository;
         public UserMsg create(UserMsgDTO dto) {

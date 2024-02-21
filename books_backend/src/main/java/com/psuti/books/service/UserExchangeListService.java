@@ -3,7 +3,11 @@ package com.psuti.books.service;
 import com.psuti.books.dto.UserExchangeListDTO;
 import com.psuti.books.model.UserExchangeList;
 import com.psuti.books.repository.UserExchangeListRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
 public class UserExchangeListService {
     private UserExchangeListRepository userExchangeListRepository;
     public UserExchangeList create(UserExchangeListDTO dto) {

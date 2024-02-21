@@ -3,9 +3,11 @@ package com.psuti.books.service;
 import com.psuti.books.dto.BookLiteraryDTO;
 import com.psuti.books.model.BookLiterary;
 import com.psuti.books.repository.BookLiteraryRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
+@Service
+@RequiredArgsConstructor
 public class BookLiteraryService {
     private BookLiteraryRepository bookLiteraryRepository;
 

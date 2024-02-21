@@ -1,15 +1,16 @@
 package com.psuti.books.service;
 
-import com.psuti.books.dto.AutorDTO;
 import com.psuti.books.dto.ExchangeListDTO;
-import com.psuti.books.model.Autor;
 import com.psuti.books.model.ExchangeList;
-import com.psuti.books.repository.AutorRepository;
 import com.psuti.books.repository.ExchangeListRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-public class ExhLService {
+@Service
+@RequiredArgsConstructor
+public class ExchangeListService {
     private ExchangeListRepository exchangeListRepository;
     public ExchangeList create(ExchangeListDTO dto) {
         return exchangeListRepository.save(ExchangeList.builder()
@@ -18,7 +19,7 @@ public class ExhLService {
                         .offerList2(dto.getOfferList2())
                         .wishList2(dto.getWishList2())
                         .createAt(new Date())
-                        .isBoth() // хъ что тут
+                        .isBoth(dto.isBoth())
                 .build());
     }
 
@@ -33,8 +34,7 @@ public class ExhLService {
                 .wishList1(dto.getWishList1())
                 .offerList2(dto.getOfferList2())
                 .wishList2(dto.getWishList2())
-
-                .isBoth() // хъ что тут
+                .isBoth(dto.isBoth())
                 .build());
     }
 
