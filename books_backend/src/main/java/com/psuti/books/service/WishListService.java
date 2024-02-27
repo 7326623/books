@@ -2,22 +2,28 @@ package com.psuti.books.service;
 
 import com.psuti.books.dto.WishListDTO;
 import com.psuti.books.model.WishList;
+import com.psuti.books.repository.StatusRepository;
+import com.psuti.books.repository.UserAddressRepository;
+import com.psuti.books.repository.UserRepository;
 import com.psuti.books.repository.WishListRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class WishListService {
     private WishListRepository wishListRepository;
+    private UserRepository userRepository;
+    private StatusRepository statusRepository;
+    private UserAddressRepository userAddressRepository;
     public WishList create(WishListDTO dto) {
         return wishListRepository.save(WishList.builder()
-                        .user(dto.getUser())
-                        .createAt(new Date())
-                        .status(dto.getStatus())
-                        .userAddress(dto.getUserAddress())
+                .user(userRepository.findById(dto.getUserId()).orElse(null))
+                .createAt(new Date())
+                .status(statusRepository.findById(dto.getStatusId()).orElse(null))
+                .userAddress(userAddressRepository.findById(dto.getUserAddressId()).orElse(null))
                 .build());
     }
 
@@ -25,18 +31,13 @@ public class WishListService {
         return wishListRepository.findById(id).orElse(null);
     }
 
-    public WishList updateFromUser(WishListDTO dto) {
+    public WishList update(WishListDTO dto) {
         return wishListRepository.save(WishList.builder()
                 .id(dto.getId())
-                .user(dto.getUser())
-                        .updateAt(new Date())
-                .status(dto.getStatus())
-                .userAddress(dto.getUserAddress())
+                .user(userRepository.findById(dto.getUserId()).orElse(null))
+                .status(statusRepository.findById(dto.getStatusId()).orElse(null))
+                .userAddress(userAddressRepository.findById(dto.getUserAddressId()).orElse(null))
                 .build());
-    }
-
-    public WishList updateFromAdmin(WishList udr) {
-        return wishListRepository.save(udr);
     }
 
     public void delete(Long id) {

@@ -3,23 +3,25 @@ package com.psuti.books.service;
 import com.psuti.books.dto.UserAddressDTO;
 import com.psuti.books.model.UserAddress;
 import com.psuti.books.repository.UserAddressRepository;
-import lombok.RequiredArgsConstructor;
+import com.psuti.books.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserAddressService {
     private UserAddressRepository userAddressRepository;
+    private UserRepository userRepository;
     public UserAddress create(UserAddressDTO dto) {
         return userAddressRepository.save(UserAddress.builder()
-                        .user(dto.getIdUser())
-                        .addrIndex(dto.getAddrIndex())
-                        .addrCity(dto.getAddrCity())
-                        .addrStreet(dto.getAddrStreet())
-                        .addrHouse(dto.getAddrHouse())
-                        .AddrStructure(dto.getAddrStructure())
-                        .AddrApart(dto.getAddrApart())
-                        //.isDefault(dto.isDefault())
+                .user(userRepository.findById(dto.getIdUser()).orElse(null))
+                .addrIndex(dto.getAddrIndex())
+                .addrCity(dto.getAddrCity())
+                .addrStreet(dto.getAddrStreet())
+                .addrHouse(dto.getAddrHouse())
+                .AddrStructure(dto.getAddrStructure())
+                .AddrApart(dto.getAddrApart())
+                .isDefault(dto.isDefault())
                 .build());
     }
 
@@ -27,23 +29,19 @@ public class UserAddressService {
         return userAddressRepository.findById(id).orElse(null);
     }
 
-    public UserAddress updateFromUser(UserAddressDTO dto) {
+    public UserAddress update(UserAddressDTO dto) {
         return userAddressRepository.save(UserAddress.builder()
-                        .id(dto.getId())
-                .user(dto.getIdUser())
+                .id(dto.getId())
+                .user(userRepository.findById(dto.getIdUser()).orElse(null))
                 .addrIndex(dto.getAddrIndex())
                 .addrCity(dto.getAddrCity())
                 .addrStreet(dto.getAddrStreet())
                 .addrHouse(dto.getAddrHouse())
                 .AddrStructure(dto.getAddrStructure())
                 .AddrApart(dto.getAddrApart())
-                //.isDefault(dto.isDefault())
+                .isDefault(dto.isDefault())
                 .build());
 
-    }
-
-    public UserAddress updateFromAdmin(UserAddress udr) {
-        return userAddressRepository.save(udr);
     }
 
     public void delete(Long id) {

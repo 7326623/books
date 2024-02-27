@@ -1,24 +1,33 @@
 package com.psuti.books.service;
 
 import com.psuti.books.dto.OfferListDTO;
-import com.psuti.books.model.BookLiterary;
+import com.psuti.books.model.Category;
 import com.psuti.books.model.OfferList;
-import com.psuti.books.repository.OfferListRepository;
-import lombok.RequiredArgsConstructor;
+import com.psuti.books.repository.*;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class OfferListService {
     private OfferListRepository offerListRepository;
+    private CategoryRepository categoryRepository;
+    private BookLiteraryRepository bookLiteraryRepository;
+    private UserRepository userRepository;
+    private StatusRepository statusRepository;
+
     public OfferList create(OfferListDTO dto) {
         return offerListRepository.save(OfferList.builder()
-                        .bookLiterary((List<BookLiterary>) dto.getBookLiterary())
-                        .user(dto.getUser())
-                        .isbn(dto.getIsbn())
-                        .yearPublishing(dto.getYearPublishing())
+                .bookLiterary(bookLiteraryRepository.findById(dto.getBookLiteraryId()).orElse(null))
+                .user(userRepository.findById(dto.getUserId()).orElse(null))
+                .isbn(dto.getIsbn())
+                .yearPublishing(dto.getYearPublishing())
+                .createAt(new Date())
+                .updateAt(new Date())
+                .status(statusRepository.findById(1L).orElse(null))
                 .build());
     }
 
@@ -26,21 +35,32 @@ public class OfferListService {
         return offerListRepository.findById(id).orElse(null);
     }
 
-    public OfferList updateFromUser(OfferListDTO dto) {
+    public List<OfferList> getAll() {
+        return offerListRepository.findAll();
+    }
+    public OfferList update(OfferListDTO dto) {
         return offerListRepository.save(OfferList.builder()
                 .id(dto.getId())
-                .bookLiterary((List<BookLiterary>) dto.getBookLiterary())
-                .user(dto.getUser())
+                .bookLiterary(bookLiteraryRepository.findById(dto.getBookLiteraryId()).orElse(null))
+                .user(userRepository.findById(dto.getUserId()).orElse(null))
                 .isbn(dto.getIsbn())
                 .yearPublishing(dto.getYearPublishing())
+                .updateAt(new Date())
+                .status(statusRepository.findById(dto.getStatusId()).orElse(null))
                 .build());
-    }
-
-    public OfferList updateFromAdmin(OfferList ofr) {
-        return offerListRepository.save(ofr);
     }
 
     public void delete(Long id) {
         offerListRepository.deleteById(id);
+    }
+
+    public OfferList assignCategoryToOfferList(Long offerListId, Long categoryId) {
+        List<Category> categoryList = null;
+        OfferList offerList = offerListRepository.findById(offerListId).orElse(null);
+        Category category = categoryRepository.findById(categoryId).orElse(null);
+        categoryList = offerList.getCategories();
+        categoryList.add(category);
+        offerList.setCategories(categoryList);
+        return offerListRepository.save(offerList);
     }
 }

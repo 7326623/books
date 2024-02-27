@@ -1,12 +1,11 @@
 package com.psuti.books.dto;
 
-import com.psuti.books.model.Autor;
 import lombok.Data;
 
 @Data
 public class BookLiteraryDTO {
     private Long id;
-    private Autor autor;
+    private Long autorId;
     private String bookName;
     private String note;
 }

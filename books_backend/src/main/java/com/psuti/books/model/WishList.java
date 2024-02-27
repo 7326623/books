@@ -7,13 +7,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WishList extends UserList {
+public class WishList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -35,4 +36,11 @@ public class WishList extends UserList {
     @ManyToOne
     @JoinColumn(name = "IdUserAddress", nullable = false)
     private UserAddress userAddress;
+
+    @ManyToMany
+    @JoinTable(name="category_wishList",
+            joinColumns=  @JoinColumn(name="wishlist_id"),
+            inverseJoinColumns= @JoinColumn(name="category_id")
+    )
+    private List<Category> categories;
 }

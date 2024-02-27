@@ -1,15 +1,13 @@
 package com.psuti.books.dto;
 
-import com.psuti.books.model.OfferList;
-import com.psuti.books.model.WishList;
 import lombok.Data;
 
 @Data
 public class ExchangeListDTO {
     private Long id;
-    private OfferList offerList1;
-    private OfferList offerList2;
-    private WishList wishList1;
-    private WishList wishList2;
+    private Long offerList1id;
+    private Long offerList2id;
+    private Long wishList1id;
+    private Long wishList2id;
     private boolean isBoth;
 }

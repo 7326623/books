@@ -3,23 +3,27 @@ package com.psuti.books.service;
 import com.psuti.books.dto.ExchangeListDTO;
 import com.psuti.books.model.ExchangeList;
 import com.psuti.books.repository.ExchangeListRepository;
-import lombok.RequiredArgsConstructor;
+import com.psuti.books.repository.OfferListRepository;
+import com.psuti.books.repository.WishListRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ExchangeListService {
     private ExchangeListRepository exchangeListRepository;
+    private OfferListRepository offerListRepository;
+    private WishListRepository wishListRepository;
     public ExchangeList create(ExchangeListDTO dto) {
         return exchangeListRepository.save(ExchangeList.builder()
-                        .offerList1(dto.getOfferList1())
-                        .wishList1(dto.getWishList1())
-                        .offerList2(dto.getOfferList2())
-                        .wishList2(dto.getWishList2())
-                        .createAt(new Date())
-                        .isBoth(dto.isBoth())
+                .offerList1(offerListRepository.findById(dto.getOfferList1id()).orElse(null))
+                .wishList1(wishListRepository.findById(dto.getWishList1id()).orElse(null))
+                .offerList2(offerListRepository.findById(dto.getOfferList2id()).orElse(null))
+                .wishList2(wishListRepository.findById(dto.getWishList2id()).orElse(null))
+                .createAt(new Date())
+                .isBoth(dto.isBoth())
                 .build());
     }
 
@@ -27,19 +31,14 @@ public class ExchangeListService {
         return exchangeListRepository.findById(id).orElse(null);
     }
 
-    public ExchangeList updateFromUser(ExchangeListDTO dto) {
+    public ExchangeList update(ExchangeListDTO dto) {
         return exchangeListRepository.save(ExchangeList.builder()
-                        .id(dto.getId())
-                .offerList1(dto.getOfferList1())
-                .wishList1(dto.getWishList1())
-                .offerList2(dto.getOfferList2())
-                .wishList2(dto.getWishList2())
+                .offerList1(offerListRepository.findById(dto.getOfferList1id()).orElse(null))
+                .wishList1(wishListRepository.findById(dto.getWishList1id()).orElse(null))
+                .offerList2(offerListRepository.findById(dto.getOfferList2id()).orElse(null))
+                .wishList2(wishListRepository.findById(dto.getWishList2id()).orElse(null))
                 .isBoth(dto.isBoth())
                 .build());
-    }
-
-    public ExchangeList updateFromAdmin(ExchangeList exchl) {
-        return exchangeListRepository.save(exchl);
     }
 
     public void delete(Long id) {

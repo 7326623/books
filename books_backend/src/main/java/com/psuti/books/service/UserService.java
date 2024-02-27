@@ -18,15 +18,15 @@ public class UserService {
     public User create(UserDTO dto) {
         var bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return userRepository.save(User.builder()
-                        .firstName(dto.getFirstName())
-                        .lastName(dto.getLastName())
-                        .secondName(dto.getSecondName())
-                        .email(dto.getEmail())
-                        .userName(dto.getUserName())
-                        .password(bCryptPasswordEncoder.encode(dto.getPassword()))
-                        .createdAt(new Date())
-                        .enabled(true)
-                        .role("ROLE_USER")
+                .firstName(dto.getFirstName())
+                .lastName(dto.getLastName())
+                .secondName(dto.getSecondName())
+                .email(dto.getEmail())
+                .userName(dto.getUserName())
+                .password(bCryptPasswordEncoder.encode(dto.getPassword()))
+                .createdAt(new Date())
+                .enabled(true)
+                .role("ROLE_USER")
                 .build());
     }
 
@@ -41,7 +41,7 @@ public class UserService {
     public User updateFromUser(UserDTO dto) {
         var bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return userRepository.save(User.builder()
-                        .id(dto.getId())
+                .id(dto.getId())
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
                 .secondName(dto.getSecondName())

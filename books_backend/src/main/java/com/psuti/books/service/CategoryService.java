@@ -3,19 +3,22 @@ package com.psuti.books.service;
 import com.psuti.books.dto.CategoryDTO;
 import com.psuti.books.model.Category;
 import com.psuti.books.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CategoryService {
 
     private CategoryRepository categoryRepository;
 
     public Category create(CategoryDTO dto) {
         return categoryRepository.save(Category.builder()
-
-
+                .name(dto.getName())
+                .idParent(categoryRepository.findById(dto.getIdParent()).orElse(null))
+                .multiSelect(dto.isMultiSelect())
                 .build());
     }
 
@@ -23,15 +26,11 @@ public class CategoryService {
         return categoryRepository.findById(id).orElse(null);
     }
 
-    public Category updateFromUser(CategoryDTO dto) {
-        return categoryRepository.save(Category.builder()
-                .id(dto.getId())
-
-
-                .build());
+    public List<Category> getAll() {
+        return categoryRepository.findAll();
     }
 
-    public Category updateFromAdmin(Category category) {
+    public Category update(Category category) {
         return categoryRepository.save(category);
     }
 

@@ -3,16 +3,16 @@ package com.psuti.books.service;
 import com.psuti.books.dto.StatusDTO;
 import com.psuti.books.model.Status;
 import com.psuti.books.repository.StatusRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class StatusService {
     private StatusRepository statusRepository;
     public Status create(StatusDTO dto) {
         return statusRepository.save(Status.builder()
-                        .name(dto.getName())
+                .name(dto.getName())
                 .build());
     }
 
@@ -20,15 +20,11 @@ public class StatusService {
         return statusRepository.findById(id).orElse(null);
     }
 
-    public Status updateFromUser(StatusDTO dto) {
+    public Status update(StatusDTO dto) {
         return statusRepository.save(Status.builder()
-                        .id(dto.getId())
-                        .name(dto.getName())
+                .id(dto.getId())
+                .name(dto.getName())
                 .build());
-    }
-
-    public Status updateFromAdmin(Status sts) {
-        return statusRepository.save(sts);
     }
 
     public void delete(Long id) {

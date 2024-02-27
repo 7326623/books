@@ -5,11 +5,11 @@ import com.psuti.books.dto.AutorDTO;
 import com.psuti.books.model.Autor;
 
 import com.psuti.books.repository.AutorRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class AutorService {
     private AutorRepository autorRepository;
     public Autor create(AutorDTO dto) {
@@ -23,15 +23,7 @@ public class AutorService {
         return autorRepository.findById(id).orElse(null);
     }
 
-    public Autor updateFromUser(AutorDTO dto) {
-        return autorRepository.save(Autor.builder()
-                        .id(dto.getId())
-                .firstName(dto.getFirstName())
-                .lastName(dto.getLastName())
-                .build());
-    }
-
-    public Autor updateFromAdmin(Autor autor) {
+    public Autor update(Autor autor) {
         return autorRepository.save(autor);
     }
 

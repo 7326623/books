@@ -1,10 +1,7 @@
 package com.psuti.books.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -14,14 +11,14 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OfferList extends UserList {
+public class OfferList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "IdBookLiterary", nullable = false)
-    private List<BookLiterary> bookLiterary;
+    private BookLiterary bookLiterary;
 
     @ManyToOne
     @JoinColumn(name = "IdUser", nullable = false)
@@ -42,4 +39,11 @@ public class OfferList extends UserList {
     @ManyToOne
     @JoinColumn(name = "IdStatus", nullable = false)
     private Status status;
+
+    @ManyToMany
+    @JoinTable(name="category_offerList",
+            joinColumns=  @JoinColumn(name="offer_list_id"),
+            inverseJoinColumns= @JoinColumn(name="category_id")
+    )
+    private List<Category> categories;
 }

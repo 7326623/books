@@ -2,20 +2,24 @@ package com.psuti.books.service;
 
 import com.psuti.books.dto.UserExchangeListDTO;
 import com.psuti.books.model.UserExchangeList;
+import com.psuti.books.repository.ExchangeListRepository;
+import com.psuti.books.repository.OfferListRepository;
 import com.psuti.books.repository.UserExchangeListRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserExchangeListService {
     private UserExchangeListRepository userExchangeListRepository;
+    private ExchangeListRepository exchangeListRepository;
+    private OfferListRepository offerListRepository;
     public UserExchangeList create(UserExchangeListDTO dto) {
         return userExchangeListRepository.save(UserExchangeList.builder()
-                        .exchangeList(dto.getExchangeList())
-                        .offerlist(dto.getOfferList())
-                        .trackNumber(dto.getTrackNumber())
-                        //.receiving(dto.isReceiving())
+                .exchangeList(exchangeListRepository.findById(dto.getExchangeListId()).orElse(null))
+                .offerlist(offerListRepository.findById(dto.getOfferListId()).orElse(null))
+                .trackNumber(dto.getTrackNumber())
+                .receiving(false)
                 .build());
     }
 
@@ -23,18 +27,14 @@ public class UserExchangeListService {
         return userExchangeListRepository.findById(id).orElse(null);
     }
 
-    public UserExchangeList updateFromUser(UserExchangeListDTO dto) {
+    public UserExchangeList update(UserExchangeListDTO dto) {
         return userExchangeListRepository.save(UserExchangeList.builder()
-                        .id(dto.getId())
-                .exchangeList(dto.getExchangeList())
-                .offerlist(dto.getOfferList())
+                .id(dto.getId())
+                .exchangeList(exchangeListRepository.findById(dto.getExchangeListId()).orElse(null))
+                .offerlist(offerListRepository.findById(dto.getOfferListId()).orElse(null))
                 .trackNumber(dto.getTrackNumber())
-                //.receiving(dto.isReceiving())
+                .receiving(dto.isReceiving())
                 .build());
-    }
-
-    public UserExchangeList updateFromAdmin(UserExchangeList udr) {
-        return userExchangeListRepository.save(udr);
     }
 
     public void delete(Long id) {

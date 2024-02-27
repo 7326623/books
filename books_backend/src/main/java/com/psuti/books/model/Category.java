@@ -1,5 +1,6 @@
 package com.psuti.books.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,15 +23,17 @@ public class Category {
     private String name;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn//(nullable = false)
     private Category idParent;
 
     @Column(nullable = false)
     private boolean multiSelect = false;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name="category_list",
-            joinColumns=  @JoinColumn(name="category_id", referencedColumnName="id"),
-            inverseJoinColumns= @JoinColumn(name="list_id", referencedColumnName="id") )
-    private List<UserList> list;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
+    private List<OfferList> offerLists;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
+    private List<WishList> wishLists;
 }
