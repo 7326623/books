@@ -4,12 +4,13 @@
   <title>Обмен</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script type="script.js"></script>
 </head>
 <body>
     <header class="text-bg-dark d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="text-white fs-4">ОбменОЧКА</span>
+        <img class="bi me-2" width="40" height="32" src="logo.png">
+        <span class="text-white fs-4">Book Trader</span>
       </a>
 
         <div class="col-md-2 d-flex flex-wrap">
@@ -29,8 +30,8 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="mainpage.html" class="nav-link px-2 link-secondary">Главная</a></li>
         <li><a href="exchange.html" class="nav-link px-2">Начать обмен</a></li>
-        <li><a href="#" class="nav-link px-2">Мои обмены</a></li>
-        <li><a href="#" class="nav-link px-2">Задать вопрос</a></li>
+        <li><a href="myexchange.html" class="nav-link px-2">Мои обмены</a></li>
+        <li><a href="appeal.html" class="nav-link px-2">Задать вопрос</a></li>
       </ul>
 
       <div class="col-md-3 text-end">
@@ -59,8 +60,8 @@
     </div>
 
 
-
-    <div class="row g-5">
+<!-- Начало блока "Хочу обменять" -->
+    <div class="row g-5 m-auto">
       <div class="col-md-5 col-lg-4 order-md-last">
         <ul class="list-unstyled ps-0">
       <li class="mb-1">
@@ -236,8 +237,241 @@
       </div>
     </div>
   </div>
-  <div class="text-end">
-      <button type="button" class="btn btn-primary">Далее</button>
+<!-- Конец блока "Хочу обменять" -->
+
+<!-- Начало блока "Хочу получить" -->
+    <div class="row g-5 m-auto">
+      <div class="col-md-5 col-lg-4">
+        <ul class="list-unstyled ps-0">
+      <li class="mb-1">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#genre-collapse" aria-expanded="false">
+          Жанр
+        </button>
+        <div class="collapse" id="genre-collapse" style="">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id1">
+                <span>Детектив</span>
+              </label></a>
+            </li>
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id2">
+                <span>Детские книги</span>
+              </label></a>
+            </li>
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id3">
+                <span>История</span>
+              </label></a>
+            </li>
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id3">
+                <span>Мемуары</span>
+              </label></a>
+            </li>
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id3">
+                <span>Приключения</span>
+              </label></a>
+            </li>
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id3">
+                <span>Психология</span>
+              </label></a>
+            </li>
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id3">
+                <span>Фантастика</span>
+              </label></a>
+            </li>
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id3">
+                <span>Эзотерика</span>
+              </label></a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#field-collapse" aria-expanded="false">
+          Область наук
+        </button>
+        <div class="collapse" id="field-collapse" style="">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id1">
+                <span>Детектив</span>
+              </label></a>
+            </li>
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id2">
+                <span>Детские книги</span>
+              </label></a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#state-collapse" aria-expanded="false">
+          Состояние
+        </button>
+        <div class="collapse" id="state-collapse" style="">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id1">
+                <span>Номер 1</span>
+              </label></a>
+            </li>
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id2">
+                <span>Номер 2</span>
+              </label></a>
+            </li>
+          </ul>
+        </div>
+      </li>
+            <li class="mb-1">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#cover-collapse" aria-expanded="false">
+          Обложка
+        </button>
+        <div class="collapse" id="cover-collapse" style="">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id1">
+                <span>Номер 1</span>
+              </label></a>
+            </li>
+            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+              <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" wfd-id="id2">
+                <span>Номер 2</span>
+              </label></a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+      </div>
+  </div>
+<!-- Конец блока "Хочу получить" -->
+
+
+<!-- Начало блока "Адресс доставки" -->
+    <div class="row g-5 m-auto">
+      <div class="col-md-7 col-lg-8">
+        <form class="needs-validation" novalidate="">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="lastName" class="form-label">Город</label>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="" wfd-id="id1">
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="firstName" class="form-label">Улица</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required="" wfd-id="id2">
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+
+
+
+            <div class="col-sm-4">
+              <label for="username" class="form-label">Строение</label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="bookname" placeholder="" required="" wfd-id="id3">
+              <div class="invalid-feedback">
+                  Your username is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <label for="lastName" class="form-label">Дом</label>
+              <input type="text" class="form-control" id="ISBN" placeholder="" value="" required="" wfd-id="id4">
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <label for="firstName" class="form-label">Квартира</label>
+              <input type="text" class="form-control" id="publicationdate" placeholder="" value="" required="" wfd-id="id5">
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+
+            <div class="col-sm-5">
+              <label for="firstName" class="form-label">Индекс</label>
+              <input type="text" class="form-control" id="publicationdate" placeholder="" value="" required="" wfd-id="id5">
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+
+        </form>
+      </div>
+    </div>
+          <div class="col-md-5 col-lg-4 order-md-last">
+                <form class="needs-validation" novalidate="">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="lastName" class="form-label">Фамилия</label>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="" wfd-id="id1">
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="firstName" class="form-label">Имя</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required="" wfd-id="id2">
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+
+
+
+            <div class="col-12">
+              <label for="username" class="form-label">Отчество (при наличии)</label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="bookname" placeholder="" required="" wfd-id="id3">
+              <div class="invalid-feedback">
+                  Your username is required.
+                </div>
+              </div>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Конец блока "Адресс доставки" -->
+
+    <div class="text-end">
+      <button type="button" class="btn btn-primary">Подтвердить данные</button>
+  </div>
+
+  </div>
+
   </div>
 </body>
 </html>
