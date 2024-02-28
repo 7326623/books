@@ -8,6 +8,8 @@ import com.psuti.books.repository.AutorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class AutorService {
@@ -19,12 +21,20 @@ public class AutorService {
                 .build());
     }
 
+    public List<Autor> getAll() {
+        return autorRepository.findAll();
+    }
+
     public Autor getById(Long id) {
         return autorRepository.findById(id).orElse(null);
     }
 
-    public Autor update(Autor autor) {
-        return autorRepository.save(autor);
+    public Autor update(AutorDTO autor) {
+        return autorRepository.save(Autor.builder()
+                .id(autor.getId())
+                .firstName(autor.getFirstName())
+                .lastName(autor.getLastName())
+                .build());
     }
 
     public void delete(Long id) {

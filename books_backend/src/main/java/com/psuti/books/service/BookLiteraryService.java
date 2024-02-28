@@ -7,6 +7,8 @@ import com.psuti.books.repository.BookLiteraryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class BookLiteraryService {
@@ -21,12 +23,21 @@ public class BookLiteraryService {
                 .build());
     }
 
+    public List<BookLiterary> getAll() {
+        return bookLiteraryRepository.findAll();
+    }
+
     public BookLiterary getById(Long id) {
         return bookLiteraryRepository.findById(id).orElse(null);
     }
 
-    public BookLiterary update(BookLiterary bookLiterary) {
-        return bookLiteraryRepository.save(bookLiterary);
+    public BookLiterary update(BookLiteraryDTO dto) {
+        return bookLiteraryRepository.save(BookLiterary.builder()
+                .id(dto.getId())
+                .autor(autorRepository.findById(dto.getAutorId()).orElse(null))
+                .bookName(dto.getBookName())
+                .note(dto.getNote())
+                .build());
     }
 
     public void delete(Long id) {

@@ -38,8 +38,9 @@ public class UserService {
         return Optional.ofNullable(userRepository.findByEmail(email));
     }
 
-    public User updateFromUser(UserDTO dto) {
+    public User update(UserDTO dto) {
         var bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        User user = userRepository.findById(dto.getId()).orElseThrow();
         return userRepository.save(User.builder()
                 .id(dto.getId())
                 .firstName(dto.getFirstName())
@@ -49,14 +50,25 @@ public class UserService {
                 .userName(dto.getUserName())
                 .password(bCryptPasswordEncoder.encode(dto.getPassword()))
                 .avatar(dto.getAvatar())
+                .createdAt(user.getCreatedAt())
+                .enabled(user.isEnabled())
+                .role(user.getRole())
                 .build());
-    }
-
-    public User updateFromAdmin(User user) {
-        return userRepository.save(user);
     }
 
     public void delete(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public User banUser(Long id) {
+        User user = userRepository.findById(id).orElseThrow();
+        user.setEnabled(false);
+        return userRepository.save(user);
+    }
+
+    public User unbanUser(Long id) {
+        User user = userRepository.findById(id).orElseThrow();
+        user.setEnabled(true);
+        return userRepository.save(user);
     }
 }

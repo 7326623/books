@@ -15,6 +15,7 @@ public class UserPrincipal implements UserDetails {
     private final String email;
     @JsonIgnore
     private final String password;
+    private final boolean enabled;
     private final Collection<? extends GrantedAuthority> authorities;
 
     @Override
@@ -49,6 +50,6 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }

@@ -23,6 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .email(user.getEmail())
                 .authorities(List.of(new SimpleGrantedAuthority(user.getRole())))
                 .password(user.getPassword())
+                .enabled(user.isEnabled())
                 .build();
     }
 }

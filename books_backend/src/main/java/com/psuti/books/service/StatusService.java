@@ -6,6 +6,8 @@ import com.psuti.books.repository.StatusRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class StatusService {
@@ -14,6 +16,10 @@ public class StatusService {
         return statusRepository.save(Status.builder()
                 .name(dto.getName())
                 .build());
+    }
+
+    public List<Status> getAll() {
+        return statusRepository.findAll();
     }
 
     public Status getById(Long id) {
