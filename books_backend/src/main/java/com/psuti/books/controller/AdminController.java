@@ -24,6 +24,11 @@ public class AdminController {
     private final BookLiteraryService bookLiteraryService;
     private final UserMsgService userMsgService;
 
+    @GetMapping("/messageByUser/{id}")
+    public ResponseEntity<List<UserMsg>> getMessagesByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(userMsgService.getByUserId(id), HttpStatus.OK);
+    }
+
     @PutMapping("/ban-user/{id}")
     public ResponseEntity<User> banUser(@PathVariable Long id) {
         return new ResponseEntity<>(userService.banUser(id), HttpStatus.OK);

@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -25,6 +26,10 @@ public class UserMsgService {
                     .status(statusRepository.findById(dto.getStatusId()).orElse(null))
                     .type(dto.getType())
                     .build());
+        }
+
+        public List<UserMsg> getByUserId(Long id) {
+            return userMsgRepository.findByUserId(id);
         }
 
         public UserMsg getById(Long id) {
