@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class UserAddressDTO {
     private Long id;
-    private Long idUser;
     private String addrIndex;
     private String addrCity;
     private String addrStreet;

@@ -3,13 +3,13 @@ package com.psuti.books.dto;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class OfferListDTO {
     private Long id;
     private Long bookLiteraryId;
-    private Long userId;
     private String isbn;
     private Date yearPublishing;
-    private Long statusId;
+    private List<Long> categories;
 }

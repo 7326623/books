@@ -16,7 +16,7 @@ public class OfferList {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "IdBookLiterary", nullable = false)
     private BookLiterary bookLiterary;
 
