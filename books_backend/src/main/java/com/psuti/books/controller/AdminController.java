@@ -41,7 +41,7 @@ public class AdminController {
 
     //----------Категории
     @GetMapping("/category")
-    public ResponseEntity<List<Category>> getCategories() {
+    public ResponseEntity<List<CategoryDTO>> getCategories() {
         return new ResponseEntity<>(categoryService.getAll(), HttpStatus.OK);
     }
 

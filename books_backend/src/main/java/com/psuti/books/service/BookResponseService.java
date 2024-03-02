@@ -47,4 +47,3 @@ public class BookResponseService {
         bookResponseRepository.deleteById(id);
     }
 }
-

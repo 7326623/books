@@ -6,6 +6,7 @@ import com.psuti.books.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,8 +27,16 @@ public class CategoryService {
         return categoryRepository.findById(id).orElse(null);
     }
 
-    public List<Category> getAll() {
-        return categoryRepository.findAll();
+    public List<CategoryDTO> getAll() {
+        List<CategoryDTO> dtos = new ArrayList<>();
+        for (Category category : categoryRepository.findAll()) {
+            dtos.add(CategoryDTO.builder()
+                    .name(category.getName())
+                    .idParent(category.getIdParent() == null ? 0 : category.getIdParent().getId())
+                    .multiSelect(category.isMultiSelect())
+                    .build());
+        }
+        return dtos;
     }
 
     public Category update(Category category) {
