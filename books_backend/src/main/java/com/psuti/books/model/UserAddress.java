@@ -1,5 +1,6 @@
 package com.psuti.books.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +19,7 @@ public class UserAddress {
 
     @ManyToOne
     @JoinColumn(name = "IdUser", nullable = false)
+    @JsonIgnore
     private User user;
 
     @Column(nullable = false, length = 6)

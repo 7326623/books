@@ -6,6 +6,7 @@ import com.psuti.books.model.WishList;
 import com.psuti.books.repository.*;
 import com.psuti.books.security.UserPrincipal;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -53,8 +54,13 @@ public class WishListService {
 //                .build());
 //    }
 
-    public void delete(Long id, UserPrincipal principal) {
-        if (userRepository.findByEmail(principal.getEmail()) == wishListRepository.findById(id).get().getUser())
+    public HttpStatus delete(Long id, UserPrincipal principal) {
+        if (userRepository.findByEmail(principal.getEmail()) == wishListRepository.findById(id).get().getUser()) {
             wishListRepository.deleteById(id);
+            return HttpStatus.OK;
+        }
+        else {
+            return HttpStatus.FORBIDDEN;
+        }
     }
 }

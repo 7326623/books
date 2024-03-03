@@ -4,6 +4,7 @@ import com.psuti.books.dto.OfferListDTO;
 import com.psuti.books.model.OfferList;
 import com.psuti.books.security.UserPrincipal;
 import com.psuti.books.service.OfferListService;
+import com.psuti.books.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequestMapping("/offer-list")
 public class OfferListController {
     private final OfferListService offerListService;
+    private final UserService userService;
 
     @GetMapping
     public ResponseEntity<List<OfferList>> getAllOfferList() {
@@ -25,11 +27,13 @@ public class OfferListController {
 
     @PostMapping
     public ResponseEntity<OfferList> createOfferList(@RequestBody OfferListDTO dto, @AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);//Проверка на бан
         return new ResponseEntity<>(offerListService.create(dto, principal), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public HttpStatus deleteOfferList(@PathVariable Long id, @AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return HttpStatus.FORBIDDEN;//Проверка на бан
         offerListService.delete(id, principal);
         return HttpStatus.OK;
     }

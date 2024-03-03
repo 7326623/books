@@ -1,5 +1,6 @@
 package com.psuti.books.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class OfferList {
 
     @ManyToOne
     @JoinColumn(name = "IdUser", nullable = false)
+    @JsonIgnore
     private User user;
 
     @Column(name = "ISBN", length = 13)

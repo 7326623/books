@@ -3,6 +3,7 @@ package com.psuti.books.controller;
 import com.psuti.books.dto.WishListDTO;
 import com.psuti.books.model.WishList;
 import com.psuti.books.security.UserPrincipal;
+import com.psuti.books.service.UserService;
 import com.psuti.books.service.WishListService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequestMapping("/wishlist")
 public class WishListController {
     private final WishListService wishListService;
+    private final UserService userService;
 
     @GetMapping
     public ResponseEntity<List<WishList>> getAllWishList() {
@@ -25,12 +27,13 @@ public class WishListController {
 
     @PostMapping
     public ResponseEntity<WishList> createWishList(@RequestBody WishListDTO dto, @AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);//Проверка на бан
         return new ResponseEntity<>(wishListService.create(dto, principal), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public HttpStatus deleteWishList(@PathVariable Long id, @AuthenticationPrincipal UserPrincipal principal) {
-        wishListService.delete(id, principal);
-        return HttpStatus.OK;
+        if (!userService.checkEnabledPrincipal(principal)) return HttpStatus.FORBIDDEN;//Проверка на бан
+        return wishListService.delete(id, principal);
     }
 }

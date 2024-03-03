@@ -31,6 +31,7 @@ public class CategoryService {
         List<CategoryDTO> dtos = new ArrayList<>();
         for (Category category : categoryRepository.findAll()) {
             dtos.add(CategoryDTO.builder()
+                    .id(category.getId())
                     .name(category.getName())
                     .idParent(category.getIdParent() == null ? 0 : category.getIdParent().getId())
                     .multiSelect(category.isMultiSelect())

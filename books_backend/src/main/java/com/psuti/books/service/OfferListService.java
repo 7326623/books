@@ -6,6 +6,7 @@ import com.psuti.books.model.OfferList;
 import com.psuti.books.repository.*;
 import com.psuti.books.security.UserPrincipal;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -48,9 +49,14 @@ public class OfferListService {
         return offerListRepository.findAll();
     }
 
-    public void delete(Long id, UserPrincipal principal) {
-        if (userRepository.findByEmail(principal.getEmail()) == offerListRepository.findById(id).get().getUser())
+    public HttpStatus delete(Long id, UserPrincipal principal) {
+        if (userRepository.findByEmail(principal.getEmail()) == offerListRepository.findById(id).get().getUser()) {
             offerListRepository.deleteById(id);
+            return HttpStatus.OK;
+        }
+        else {
+            return HttpStatus.FORBIDDEN;
+        }
     }
 
 //    public OfferList update(OfferListDTO dto) {

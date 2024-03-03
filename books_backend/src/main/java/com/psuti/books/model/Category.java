@@ -24,9 +24,11 @@ public class Category {
 
     @ManyToOne
     @JoinColumn//(nullable = false)
+    @JsonIgnore
     private Category idParent;
 
     @Column(nullable = false)
+    @JsonIgnore
     private boolean multiSelect = false;
 
     @JsonIgnore

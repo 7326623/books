@@ -25,21 +25,19 @@ public class UserController {
 
     @GetMapping("/secured")
     public String secured(@AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return "В бане";//Проверка на бан
         return "Если ты это видишь, то у тебя есть права ПОЛЬЗОВАТЕЛЯ " + principal.getEmail() + " id: " + principal.getUserId();
     }
 
     @GetMapping("/admin")
     public String admin(@AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return "В бане";//Проверка на бан
         return "Если ты это видишь, то у тебя есть права АДМИНИСТРАТОРА " + principal.getEmail() + " id: " + principal.getUserId();
-    }
-
-    @PutMapping("/update-user")
-    public ResponseEntity<User> updateUser(@RequestBody UserDTO dto) {
-        return new ResponseEntity<>(userService.update(dto), HttpStatus.OK);
     }
 
     @GetMapping("/me")
     public ResponseEntity<Optional<User>> getUserByPrincipal(@AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);//Проверка на бан
         return new ResponseEntity<>(userService.getByEmail(principal.getEmail()), HttpStatus.OK);
     }
 }

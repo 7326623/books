@@ -3,6 +3,7 @@ package com.psuti.books.service;
 import com.psuti.books.dto.UserDTO;
 import com.psuti.books.model.User;
 import com.psuti.books.repository.UserRepository;
+import com.psuti.books.security.UserPrincipal;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -70,5 +71,9 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow();
         user.setEnabled(true);
         return userRepository.save(user);
+    }
+
+    public boolean checkEnabledPrincipal(UserPrincipal principal) {
+        return userRepository.findByEmail(principal.getEmail()).isEnabled();
     }
 }

@@ -2,6 +2,7 @@ package com.psuti.books.controller;
 
 import com.psuti.books.security.UserPrincipal;
 import com.psuti.books.service.OfferService;
+import com.psuti.books.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/offers")
 public class OfferController {
     private final OfferService offerService;
+    private final UserService userService;
 
     @GetMapping
     public ResponseEntity<Object> getOffers(@AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);//Проверка на бан
         return new ResponseEntity<>(offerService.get(principal), HttpStatus.OK);
     }
 }
