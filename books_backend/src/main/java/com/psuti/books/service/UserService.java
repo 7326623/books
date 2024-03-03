@@ -39,11 +39,11 @@ public class UserService {
         return Optional.ofNullable(userRepository.findByEmail(email));
     }
 
-    public User update(UserDTO dto) {
+    public User update(UserDTO dto, UserPrincipal principal) {
         var bCryptPasswordEncoder = new BCryptPasswordEncoder();
         User user = userRepository.findById(dto.getId()).orElseThrow();
         return userRepository.save(User.builder()
-                .id(dto.getId())
+                .id(userRepository.findByEmail(principal.getEmail()).getId())
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
                 .secondName(dto.getSecondName())

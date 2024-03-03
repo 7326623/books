@@ -45,8 +45,8 @@ public class OfferListService {
         return offerListRepository.findById(id).orElse(null);
     }
 
-    public List<OfferList> getAll() {
-        return offerListRepository.findAll();
+    public List<OfferList> getAll(UserPrincipal principal) {
+        return offerListRepository.findByUserId(userRepository.findByEmail(principal.getEmail()).getId());
     }
 
     public HttpStatus delete(Long id, UserPrincipal principal) {

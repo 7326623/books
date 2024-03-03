@@ -21,8 +21,9 @@ public class WishListController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<WishList>> getAllWishList() {
-        return new ResponseEntity<>(wishListService.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<WishList>> getAllWishList(@AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);//Проверка на бан
+        return new ResponseEntity<>(wishListService.getAll(principal), HttpStatus.OK);
     }
 
     @PostMapping

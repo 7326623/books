@@ -37,8 +37,8 @@ public class WishListService {
                 .build());
     }
 
-    public List<WishList> getAll() {
-        return wishListRepository.findAll();
+    public List<WishList> getAll(UserPrincipal principal) {
+        return wishListRepository.findByUserId(userRepository.findByEmail(principal.getEmail()).getId());
     }
 
     public WishList getById(Long id) {

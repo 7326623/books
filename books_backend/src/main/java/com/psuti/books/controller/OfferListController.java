@@ -21,8 +21,9 @@ public class OfferListController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<OfferList>> getAllOfferList() {
-        return new ResponseEntity<>(offerListService.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<OfferList>> getAllOfferList(@AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);//Проверка на бан
+        return new ResponseEntity<>(offerListService.getAll(principal), HttpStatus.OK);
     }
 
     @PostMapping

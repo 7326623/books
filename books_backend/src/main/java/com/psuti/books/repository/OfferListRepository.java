@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface OfferListRepository extends JpaRepository<OfferList, Long> {
     List<OfferList> findByUserIdNot(Long userId);
+    List<OfferList> findByUserId(Long userId);
 }

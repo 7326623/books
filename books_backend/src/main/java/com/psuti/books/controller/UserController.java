@@ -40,4 +40,10 @@ public class UserController {
         if (!userService.checkEnabledPrincipal(principal)) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);//Проверка на бан
         return new ResponseEntity<>(userService.getByEmail(principal.getEmail()), HttpStatus.OK);
     }
+
+    @PostMapping("/me")
+    public ResponseEntity<User> updateUserByPrincipal(UserDTO dto, @AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);//Проверка на бан
+        return new ResponseEntity<>(userService.update(dto, principal), HttpStatus.OK);
+    }
 }
