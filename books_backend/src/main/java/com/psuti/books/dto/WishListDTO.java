@@ -9,4 +9,5 @@ public class WishListDTO {
     private Long id;
     private Long userAddressId;
     private List<Long> categories;
+    private Long offerListId;
 }

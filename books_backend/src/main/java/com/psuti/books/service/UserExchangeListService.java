@@ -1,43 +1,49 @@
 package com.psuti.books.service;
 
+
 import com.psuti.books.dto.UserExchangeListDTO;
 import com.psuti.books.model.UserExchangeList;
-import com.psuti.books.repository.ExchangeListRepository;
-import com.psuti.books.repository.OfferListRepository;
 import com.psuti.books.repository.UserExchangeListRepository;
+import com.psuti.books.security.UserPrincipal;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class UserExchangeListService {
     private UserExchangeListRepository userExchangeListRepository;
-    private ExchangeListRepository exchangeListRepository;
-    private OfferListRepository offerListRepository;
-    public UserExchangeList create(UserExchangeListDTO dto) {
-        return userExchangeListRepository.save(UserExchangeList.builder()
-                .exchangeList(exchangeListRepository.findById(dto.getExchangeListId()).orElse(null))
-                .offerlist(offerListRepository.findById(dto.getOfferListId()).orElse(null))
-                .trackNumber(dto.getTrackNumber())
-                .receiving(false)
-                .build());
+
+    public ResponseEntity<UserExchangeList> updateTrackNumber(UserPrincipal principal, String trackNumber, Long id) {
+        UserExchangeList userExchangeList = userExchangeListRepository.findById(id).orElse(null);
+        if(userExchangeList.getOfferlist().getUser().getId().equals(principal.getUserId())) {
+            userExchangeList.setTrackNumber(trackNumber);
+            return new ResponseEntity<>(userExchangeListRepository.save(userExchangeList), HttpStatus.OK);
+        }
+        else return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
 
-    public UserExchangeList getById(Long id) {
-        return userExchangeListRepository.findById(id).orElse(null);
+    public ResponseEntity<UserExchangeList> setReceiving(UserPrincipal principal, Long id) {
+        UserExchangeList userExchangeList = userExchangeListRepository.findById(id).orElse(null);
+        if(userExchangeList.getOfferlist().getUser().getId().equals(principal.getUserId())) {
+            userExchangeList.setReceiving(true);
+            return new ResponseEntity<>(userExchangeListRepository.save(userExchangeList), HttpStatus.OK);
+        }
+        else return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
 
-    public UserExchangeList update(UserExchangeListDTO dto) {
-        return userExchangeListRepository.save(UserExchangeList.builder()
-                .id(dto.getId())
-                .exchangeList(exchangeListRepository.findById(dto.getExchangeListId()).orElse(null))
-                .offerlist(offerListRepository.findById(dto.getOfferListId()).orElse(null))
-                .trackNumber(dto.getTrackNumber())
-                .receiving(dto.isReceiving())
-                .build());
+    public ResponseEntity<UserExchangeList> getUserExchangeList(UserPrincipal principal, Long id) {
+        UserExchangeList userExchangeList = userExchangeListRepository.findById(id).orElse(null);
+        if(userExchangeList.getOfferlist().getUser().getId().equals(principal.getUserId())) {
+            return new ResponseEntity<>(userExchangeList, HttpStatus.OK);
+        }
+        else return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
 
-    public void delete(Long id) {
-        userExchangeListRepository.deleteById(id);
+    public ResponseEntity<List<UserExchangeList>> getUserExchangeLists(UserPrincipal principal) {
+        return new ResponseEntity<>(userExchangeListRepository.findByUserId(principal.getUserId()),HttpStatus.OK);
     }
 }

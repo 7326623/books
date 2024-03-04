@@ -48,4 +48,7 @@ public class OfferList {
             inverseJoinColumns= @JoinColumn(name="category_id")
     )
     private List<Category> categories;
+
+    @JsonIgnore
+    private boolean archived;
 }

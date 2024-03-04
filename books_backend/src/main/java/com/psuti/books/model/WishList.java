@@ -45,4 +45,11 @@ public class WishList {
             inverseJoinColumns= @JoinColumn(name="category_id")
     )
     private List<Category> categories;
+
+    @OneToOne
+    @JsonIgnore
+    private OfferList offerList;
+
+    @JsonIgnore
+    private boolean archived;
 }

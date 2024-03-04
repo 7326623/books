@@ -20,6 +20,7 @@ public class WishListService {
     private UserRepository userRepository;
     private StatusRepository statusRepository;
     private UserAddressRepository userAddressRepository;
+    private OfferListRepository offerListRepository;
     private CategoryRepository categoryRepository;
     public WishList create(WishListDTO dto, UserPrincipal principal) {
         List<Category> categoryFromDTO = new ArrayList<>();
@@ -34,6 +35,7 @@ public class WishListService {
                 .status(statusRepository.findById(1L).orElse(null))
                 .userAddress(userAddressRepository.findById(dto.getUserAddressId()).orElse(null))
                 .categories(categoryFromDTO)
+                .offerList(offerListRepository.findById(dto.getOfferListId()).orElse(null))
                 .build());
     }
 
