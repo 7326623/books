@@ -32,6 +32,12 @@ public class UserExchangeListController {
         return userExchangeListService.getUserExchangeLists(principal);
     }
 
+    @GetMapping("/archived")
+    public ResponseEntity<List<UserExchangeList>> getArchivedByUser(@AuthenticationPrincipal UserPrincipal principal) {
+        if (!userService.checkEnabledPrincipal(principal)) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);//Проверка на бан
+        return userExchangeListService.getArchivedUserExchangeLists(principal);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<UserExchangeList> updateTrackNumber(@AuthenticationPrincipal UserPrincipal principal, @RequestBody String trackNumber,@PathVariable Long id) {
         if (!userService.checkEnabledPrincipal(principal)) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);//Проверка на бан
