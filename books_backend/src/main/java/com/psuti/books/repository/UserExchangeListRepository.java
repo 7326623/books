@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public interface UserExchangeListRepository extends JpaRepository<UserExchangeList, Long> {
@@ -15,5 +16,7 @@ public interface UserExchangeListRepository extends JpaRepository<UserExchangeLi
             "FROM user_exchange_list\n" +
             "JOIN offer_list ON user_exchange_list.id_offer_list = offer_list.id\n" +
             "WHERE offer_list.id_user = :userId", nativeQuery = true)
-    ArrayList<UserExchangeList> findByUserId(@Param("userId") Long userId);
+    List<UserExchangeList> findByUserId(@Param("userId") Long userId);
+
+    List<UserExchangeList> findByExchangeListId(Long id);
 }
