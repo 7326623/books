@@ -1,8 +1,8 @@
 package com.psuti.books.service;
 
 
-import com.psuti.books.dto.UserExchangeListDTO;
 import com.psuti.books.model.UserExchangeList;
+import com.psuti.books.repository.ExchangeListRepository;
 import com.psuti.books.repository.UserExchangeListRepository;
 import com.psuti.books.security.UserPrincipal;
 import lombok.AllArgsConstructor;
@@ -11,11 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class UserExchangeListService {
     private UserExchangeListRepository userExchangeListRepository;
+    private ExchangeListRepository exchangeListRepository;
 
     public ResponseEntity<UserExchangeList> updateTrackNumber(UserPrincipal principal, String trackNumber, Long id) {
         UserExchangeList userExchangeList = userExchangeListRepository.findById(id).orElse(null);
@@ -44,6 +46,14 @@ public class UserExchangeListService {
     }
 
     public ResponseEntity<List<UserExchangeList>> getUserExchangeLists(UserPrincipal principal) {
-        return new ResponseEntity<>(userExchangeListRepository.findByUserId(principal.getUserId()),HttpStatus.OK);
+        return new ResponseEntity<>(userExchangeListRepository.findByUserId(principal.getUserId()).stream().filter(a ->
+                !a.isReceiving()).collect(Collectors.toList())
+                , HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<UserExchangeList>> getArchivedUserExchangeLists(UserPrincipal principal) {
+        return new ResponseEntity<>(userExchangeListRepository.findByUserId(principal.getUserId()).stream().filter(a ->
+                a.isReceiving()).collect(Collectors.toList())
+                , HttpStatus.OK);
     }
 }
