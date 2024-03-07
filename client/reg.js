@@ -1,9 +1,11 @@
    function reg() {
         console.log("reg fetch start!");
-        const response = await fetch('https://localhost/registration');*/
-        if(true==true){
+        const response = await fetch('http://localhost:8080/auth/registration');
+        if(response==true){
          const data = await response.json();
-           window.location.href=mainpage.html
+
+           console.log(data);
+           window.location.href ='mainpage.html';
         }
 
     }
