@@ -12,7 +12,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(
+        origins = {
+                "http://localhost:9090",
+                "http://kaka",
+                "http://localhost:8081",
+        },
+        methods = {
+                RequestMethod.OPTIONS,
+                RequestMethod.GET,
+                RequestMethod.PUT,
+                RequestMethod.DELETE,
+                RequestMethod.POST
+        })
 @RestController
 @AllArgsConstructor
 @RequestMapping("/admin")
