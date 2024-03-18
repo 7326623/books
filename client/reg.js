@@ -1,6 +1,6 @@
    function reg() {
 
-     /*   const object={  firstName :  document.getElementById(floatingName),
+        const object={  firstName :  document.getElementById(floatingName),
                         lastName : "document.getElementById(floatingInput)",
                         secondName : "document.getElementById(floatingInput)",
                         email : document.getElementById(floatingInput),
@@ -18,6 +18,5 @@
            console.log(body);
            window.location.href ='mainpage.html';
         }
-        */
-        alert( localStorage.test );
+
     }
