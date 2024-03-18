@@ -65,6 +65,12 @@ public class ExchangeListService {
         WishList wishList2 = exchangeList.getWishList2();
         wishList2.setArchived(true);
         wishListRepository.save(wishList2);
+        OfferList offerList1 = exchangeList.getOfferList1();
+        offerList1.setArchived(true);
+        offerListRepository.save(offerList1);
+        OfferList offerList2 = exchangeList.getOfferList2();
+        offerList2.setArchived(true);
+        offerListRepository.save(offerList2);
 
         exchangeListRepository.save(exchangeList);
 
